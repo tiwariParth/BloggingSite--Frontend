@@ -1,15 +1,33 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { ErrorInfo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { SignUpUser } from "@tiwariparth/zod-test";
-import Button from "./Button";
 import InputBox from "./InputBox";
+import axios from "axios";
+import { BACKEND_URL } from "../config/config";
 
 const Auth = ({ type }: { type: "signup" | "signin" }) => {
+  const navigate = useNavigate();
   const [postInput, setPostInputs] = useState<SignUpUser>({
     email: "",
     password: "",
-    name: " ",
+    name: "",
   });
+
+  const sendRequest = async () => {
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/user/${type}`,
+        postInput
+      );
+      console.log(response.data);
+      const jwt = response.data.token;
+      localStorage.setItem("token", jwt);
+      navigate("/blogs");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex h-screen justify-center flex-col">
       <h1 className=" text-4xl text-center font-extrabold ">
@@ -64,7 +82,12 @@ const Auth = ({ type }: { type: "signup" | "signin" }) => {
             })
           }
         />
-        <Button label={"Submit"} />
+        <button
+          onClick={sendRequest}
+          className="bg-slate-900 hover:bg-black text-white font-bold py-2 px-4 border border-black-700 rounded-lg"
+        >
+          {type === "signup" ? "Sign Up" : "Sign In"}
+        </button>
       </div>
     </div>
   );
