@@ -6,7 +6,7 @@ interface ButtonProps {
 
 const Button = ({ label }: ButtonProps) => {
   return (
-    <button className="bg-black hover:bg-slate-700 text-white font-bold py-2 px-4 border border-black-700 rounded-lg transition-[0.5s]">
+    <button className="bg-slate-900 hover:bg-black text-white font-bold py-2 px-4 border border-black-700 rounded-lg">
       {label}
     </button>
   );
