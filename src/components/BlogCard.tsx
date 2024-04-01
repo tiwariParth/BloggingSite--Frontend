@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
+
 interface BlogCardProps {
   title: string;
   authorName: string;
   publishedAt: string;
   content: string;
+  id: number;
 }
 
 const BlogCard = ({
@@ -10,34 +13,39 @@ const BlogCard = ({
   authorName,
   publishedAt,
   content,
+  id,
 }: BlogCardProps) => {
   return (
-    <div className="border-b p-4 pb-2 border-slate-200">
-      <div className="flex gap-2 items-center pb-2 ">
-        <div className="flex flex-col justify-center">
-          <Avatar authorName={authorName} />
+    <Link to={`/blog/${id}`}>
+      <div className="border-b p-4 pb-2 border-slate-200 w-screen max-w-screen-md">
+        <div className="flex gap-2 items-center pb-2 ">
+          <div className="flex flex-col justify-center">
+            <Avatar authorName={authorName} />
+          </div>
+          <h6 className="font-extralight text-sm  text-gray-600">
+            {authorName}
+          </h6>
+          <span className="font-extralight text-sm text-gray-600">
+            . {publishedAt}
+          </span>
         </div>
-        <h6 className="font-extralight text-sm  text-gray-600">{authorName}</h6>
-        <span className="font-extralight text-sm text-gray-600">
-          . {publishedAt}
-        </span>
-      </div>
-      <div className="font-semibold text-xl ">{title}</div>
+        <div className="font-semibold text-xl ">{title}</div>
 
-      <div className="text-md font-thin">{content.slice(0, 100) + "..."}</div>
-      <div className="text-slate-400 pt-3 text-sm font-thin">{`${Math.ceil(
-        content.length / 100
-      )} minute`}</div>
-    </div>
+        <div className="text-md font-thin">{content.slice(0, 100) + "..."}</div>
+        <div className="text-slate-400 pt-3 text-sm font-thin">{`${Math.ceil(
+          content.length / 100
+        )} minute`}</div>
+      </div>
+    </Link>
   );
 };
 
 export const Avatar = ({
   authorName,
-  size = 6,
+  size = String(6),
 }: {
   authorName: string;
-  size?: number;
+  size?: string;
 }) => {
   return (
     <div
