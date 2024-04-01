@@ -1,5 +1,3 @@
-import React from "react";
-
 interface BlogCardProps {
   title: string;
   authorName: string;
@@ -34,9 +32,17 @@ const BlogCard = ({
   );
 };
 
-const Avatar = ({ authorName }: { authorName: string }) => {
+export const Avatar = ({
+  authorName,
+  size = 6,
+}: {
+  authorName: string;
+  size?: number;
+}) => {
   return (
-    <div className="relative inline-flex items-center justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+    <div
+      className={`relative inline-flex items-center justify-center w-${size} h-${size} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}
+    >
       <span className="font-thin text-gray-600 dark:text-gray-300">
         {authorName[0]}
       </span>
