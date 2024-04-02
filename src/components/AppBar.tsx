@@ -5,7 +5,7 @@ const AppBar = () => {
     <div className="border-b flex justify-between items-center py-4 px-10">
       <div>Medium</div>
       <div>
-        <Avatar authorName="Medium" size={"6"} />
+        <Avatar authorName="Medium" size={10} />
       </div>
     </div>
   );

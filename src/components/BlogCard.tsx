@@ -42,10 +42,10 @@ const BlogCard = ({
 
 export const Avatar = ({
   authorName,
-  size = String(6),
+  size = 6,
 }: {
   authorName: string;
-  size?: string;
+  size?: number;
 }) => {
   return (
     <div
