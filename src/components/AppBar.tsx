@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Avatar } from "./BlogCard";
 
 const AppBar = () => {
@@ -6,9 +7,11 @@ const AppBar = () => {
       <div>Medium</div>
 
       <div className=" flex gap-7">
-        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 transition-all delay-75 rounded-full">
-          Button
-        </button>
+        <Link to="/publish">
+          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 transition-all delay-75 rounded-full">
+            Button
+          </button>
+        </Link>
         <Avatar authorName="Medium" size={"big"} />
       </div>
     </div>
